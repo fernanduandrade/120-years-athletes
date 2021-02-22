@@ -54,13 +54,13 @@ export default {
   },
   methods: {
     async getAthletes() {
-      await axios.get("http://localhost:8000/api/athletes/")
+      await axios.get("/api/athletes/")
         .then(res => {
           this.athletes = res.data.results;
         });
     },
     async searchAthlete(name) {
-      await axios.get(`http://localhost:8000/api/athletes/?Name=${name}&Team=`)
+      await axios.get(`/api/athletes/?search=${name}`)
         .then(res => {
           this.athletes = res.data.results;
         });
@@ -72,7 +72,7 @@ export default {
   computed: {
     filterAthletes() {
       return this.athletes.filter((athlete) => {
-        return athlete.Name.match(this.search);
+        return athlete.Name.toLowerCase().match(this.search.toLowerCase());
       });
     },
   },
