@@ -1,105 +1,109 @@
 <template>
-  <div id="app">
-    <div class="info-table">  
-      <h1 class="text-center">120 anos de Atletas</h1>
+<div id="app">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">120 anos de Atleta</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Cadastrar +</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
       <form v-on:submit.prevent="searchAthlete(name)">
-        <input type="text"  v-model="name" placeholder="Pesquisar no banco de dados">
-        <button type="submit">Pesquisar</button>
-      </form>
-      <input type="text" v-model="search" placeholder="Pesquisar por Atleta na table">
-      <table>
-        <thead>
-          <tr>
-            <th>#ID</th>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Time</th>
-            <th>Esporte</th>
-            <th>Ações</th>
-          </tr>
-
-        </thead>
-        <tbody>
-          <tr v-for="athlete in filterAthletes" :key="athlete.ID">
-            <td>{{ athlete.ID }}</td>
-            <td>{{ athlete.Name }}</td>
-            <td>{{ athlete.Age }}</td>
-            <td>{{ athlete.Team }}</td>
-            <td>{{ athlete.Sport }}</td>
-            <td>
-              <a href="">| Ver |</a>
-              <a href=""> Editar |</a>
-              <a href=""> Deletar |</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-md-8">
-          <nav>
-            <ul class="pagination row">
-              <li v-bind:class="{disabled:!pagination.first_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.first_link)" class="page-link">&laquo;</a></li>
-              <li v-bind:class="{disabled:!pagination.prev_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.prev_link)" class="page-link">&lt;</a></li>
-              <li v-for="pages in pagination.last_page" v-bind:key="pages" v-bind:class="{active: pagination.current_page == pages}" class="page-item"><a href="#" @click="getAthletes(pagination.path_page + pages)" class="page-link">{{pages}}</a></li>
-              <li v-bind:class="{disabled:!pagination.next_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.next_link)" class="page-link">&gt;</a></li>
-              <li v-bind:class="{disabled:!pagination.last_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.last_link)" class="page-link">&raquo;</a></li>
-            </ul>
-          </nav>
+        <div class="input-field col s12">
+          <input type="text" v-model="name">
+          <label for="autocomplete-input">Pesquisar Atleta</label>
         </div>
+        <div class="input-field col s12">
+          <input type="text" v-model="search">
+          <label for="autocomplete-input">Pesquisar na Tabela</label>
+        </div>
+        <button class="waves-effect waves-light btn"  type="submit">Pesquisar</button>
+        
+      </form>
+      <div class="col s12">
+        <select class="browser-default"
+          @change="onChange($event)"
+          @click.prevent="getAthletes(pagination.path_page + key)"
+          v-model="key"
+        >
+          <option
+            v-for="pages in pagination.last_page" 
+            v-bind:key="pages"
+          >
+            {{ pages }}
+          </option>
+        </select>
       </div>
     </div>
+    
+      
+    <table class="highlight centered">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Time</th>
+          <th>Esporte</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="athlete in filterAthletes" :key="athlete.ID">
+          <td>{{ athlete.ID }}</td>
+          <td>{{ athlete.Name }}</td>
+          <td>{{ athlete.Age }}</td>
+          <td>{{ athlete.Team }}</td>
+          <td>{{ athlete.Sport }}</td>
+          <td>
+            <a href=""> Ver |</a>
+            <a href=""> Editar |</a>
+            <a href=""> Deletar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "App",
   data() {
     return {
       athlete: {},
       athletes: [],
-      search: '',
-      name: '',
-      pagination: {}
+      search: "",
+      name: "",
+      key: "",
+      pagination: {},
     };
   },
   methods: {
     async getAthletes(page) {
-      page = page || '/api/athletes/';
-      await axios.get(page)
-        .then(res => {
-          this.athletes = res.data.result;
-          this.pagination = {
-            current_page: res.data.page,
-            last_page: 252,
-            total_page: res.data.total_pages,
-            path_page: '/api/athletes/'+'?page=',
-            first_link: '/api/athletes/',
-            last_link: '/api/athletes/?page=252',
-            prev_link: res.data.links.previous,
-            next_link: res.data.links.next,
-            page_size: res.data.page_size
-          }
-        });
+      page = page || "/api/athletes/";
+      await axios.get(page).then((res) => {
+        this.athletes = res.data.result;
+        this.pagination = {
+          last_page: 252,
+          path_page: "/api/athletes/" + "?page=",
+        };
+      });
     },
     async searchAthlete(name) {
-      await axios.get(`/api/athletes/?search=${name}`)
-        .then(res => {
-          this.athletes = res.data.result;
-        });
+      await axios.get(`/api/athletes/?search=${name}`).then((res) => {
+        this.athletes = res.data.result;
+      });
     },
-    onChangePage(pageOfItems) {
-            // update page of items
-            this.pageOfItems = pageOfItems;
+    onChange(event) {
+      event.target.value;
     },
-    updateResource(data){
-      this.athletes = data;
-    }
   },
-  components: {
-
-  },
+  components: {},
   computed: {
     filterAthletes() {
       return this.athletes.filter((athlete) => {
@@ -114,53 +118,19 @@ export default {
 </script>
 
 <style>
-h1 {
-  text-align: center
+body {
+  background-color: #ffffff;
 }
-.info-table {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+nav {
+  background-color: #9932CC;
 }
-thead,
-tfoot {
-  background-color: #3f87a6;
-  color: #fff;
-}
-
-tbody {
-  background-color: #e4f0f5;
-}
-
-caption {
-  padding: 10px;
-  caption-side: bottom;
-}
-
 table {
-  border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
-  letter-spacing: 1px;
-  font-family: sans-serif;
-  font-size: 0.8rem;
+  background-color: #ffffff;
 }
-
-td,
-th {
-  border: 1px solid rgb(190, 190, 190);
-  padding: 5px 10px;
-}
-
-td {
-  text-align: center;
-}
-
 a {
   text-decoration: none;
-  color: blue
 }
 a:hover {
   cursor: pointer;
-  border-bottom: 1px solid #3f87a6;
 }
 </style>
