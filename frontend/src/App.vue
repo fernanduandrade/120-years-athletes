@@ -35,14 +35,14 @@
         </tbody>
       </table>
       <div class="row">
-        <div class="col-mod-8">
+        <div class="col-md-8">
           <nav>
-            <ul class="pagination">
-              <li v:bind:class="{disabled:!pagination.first_link}" class="page-item"><a href="#" @click="getAthletes(pagination.first_link)" class="page-link">&laquo;</a></li>
-              <li v:bind:class="{disabled:!pagination.prev_link}" class="page-item"><a href="#" @click="getAthletes(pagination.prev_link)" class="page-link">&lt;</a></li>
-              <li v-for="n in pagination.last_page" v-bind:key="n" v:bind:class="{active:!pagination.current_page}" class="page-item"><a href="#" @click="getAthletes(pagination.path_page + n)" class="page-link">{{n}}</a></li>
-              <li v:bind:class="{disabled:!pagination.next_link}" class="page-item"><a href="#" @click="getAthletes(pagination.next_link)" class="page-link">&gt;</a></li>
-              <li v:bind:class="{disabled:!pagination.last_link}" class="page-item"><a href="#" @click="getAthletes(pagination.last_link)" class="page-link">&raquo;</a></li>
+            <ul class="pagination row">
+              <li v-bind:class="{disabled:!pagination.first_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.first_link)" class="page-link">&laquo;</a></li>
+              <li v-bind:class="{disabled:!pagination.prev_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.prev_link)" class="page-link">&lt;</a></li>
+              <li v-for="pages in pagination.last_page" v-bind:key="pages" v-bind:class="{active: pagination.current_page == pages}" class="page-item"><a href="#" @click="getAthletes(pagination.path_page + pages)" class="page-link">{{pages}}</a></li>
+              <li v-bind:class="{disabled:!pagination.next_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.next_link)" class="page-link">&gt;</a></li>
+              <li v-bind:class="{disabled:!pagination.last_link}" class="col-md-1-12"><a href="#" @click="getAthletes(pagination.last_link)" class="page-link">&raquo;</a></li>
             </ul>
           </nav>
         </div>
@@ -78,7 +78,8 @@ export default {
             first_link: '/api/athletes/',
             last_link: '/api/athletes/?page=252',
             prev_link: res.data.links.previous,
-            next_link: res.data.links.next
+            next_link: res.data.links.next,
+            page_size: res.data.page_size
           }
         });
     },
