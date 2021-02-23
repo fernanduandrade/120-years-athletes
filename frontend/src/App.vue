@@ -34,13 +34,25 @@
           </tr>
         </tbody>
       </table>
+      <div class="row">
+        <div class="col-mod-8">
+          <nav>
+            <ul class="pagination">
+              <li v:bind:class="{disabled:!pagination.first_link}" class="page-item"><a href="#" @click="getAthletes(pagination.first_link)" class="page-link">&laquo;</a></li>
+              <li v:bind:class="{disabled:!pagination.prev_link}" class="page-item"><a href="#" @click="getAthletes(pagination.prev_link)" class="page-link">&lt;</a></li>
+              <li v-for="n in pagination.last_page" v-bind:key="n" v:bind:class="{active:!pagination.current_page}" class="page-item"><a href="#" @click="getAthletes(pagination.path_page + n)" class="page-link">{{n}}</a></li>
+              <li v:bind:class="{disabled:!pagination.next_link}" class="page-item"><a href="#" @click="getAthletes(pagination.next_link)" class="page-link">&gt;</a></li>
+              <li v:bind:class="{disabled:!pagination.last_link}" class="page-item"><a href="#" @click="getAthletes(pagination.last_link)" class="page-link">&raquo;</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-
 export default {
   name: "App",
   data() {
@@ -49,25 +61,43 @@ export default {
       athletes: [],
       search: '',
       name: '',
-      nextPage: false,
+      pagination: {}
     };
   },
   methods: {
-    async getAthletes() {
-      await axios.get("/api/athletes/")
+    async getAthletes(page) {
+      page = page || '/api/athletes/';
+      await axios.get(page)
         .then(res => {
-          this.athletes = res.data.results;
+          this.athletes = res.data.result;
+          this.pagination = {
+            current_page: res.data.page,
+            last_page: 252,
+            total_page: res.data.total_pages,
+            path_page: '/api/athletes/'+'?page=',
+            first_link: '/api/athletes/',
+            last_link: '/api/athletes/?page=252',
+            prev_link: res.data.links.previous,
+            next_link: res.data.links.next
+          }
         });
     },
     async searchAthlete(name) {
       await axios.get(`/api/athletes/?search=${name}`)
         .then(res => {
-          this.athletes = res.data.results;
+          this.athletes = res.data.result;
         });
     },
+    onChangePage(pageOfItems) {
+            // update page of items
+            this.pageOfItems = pageOfItems;
+    },
+    updateResource(data){
+      this.athletes = data;
+    }
   },
   components: {
-    
+
   },
   computed: {
     filterAthletes() {
