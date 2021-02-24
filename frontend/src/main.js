@@ -11,20 +11,15 @@ Vue.config.productionTip = false
 const router = new VueRouter({
     mode: 'history',
     routes: [
-      {
+      { 
         path: '/',
-        name: 'home',
-        component: App,
+        name: 'lista',
+        component: ListAthletes,
       },
       {
         path: '/cadastro',
         name: 'form',
         component: Form,
-      },
-      {
-        path: '/lista',
-        name: 'lista',
-        component: ListAthletes,
       },
     ],
     

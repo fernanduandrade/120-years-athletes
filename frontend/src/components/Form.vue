@@ -2,6 +2,7 @@
   <div class="container">
     <form>
       <div class="row">
+        <h2 class="center">Adicionar Atleta</h2>
         <div class="input-field col s6">
           <input id="nome" type="text" class="validate" />
           <label for="nome">Nome</label>
@@ -17,7 +18,7 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
           <input id="idade" type="text" class="validate" />
           <label for="idade">Idade</label>
         </div>
