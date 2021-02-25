@@ -108,13 +108,6 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="ID" v-model="athleteForm.ID" type="text" class="validate" />
-          <label for="ID">TESTE ID</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
           <select v-model="athleteForm.Medal" id="medalha" class="validate">
             <option>Bronze</option>
             <option>Silver</option>
@@ -144,7 +137,6 @@ export default {
     return {
       teamOptions: TEAM.REGIAO,
       athleteForm: {
-        ID: "",
         Name: "",
         Sex: "",
         Age: "",
@@ -166,8 +158,7 @@ export default {
     addAthlete() {
 
       axios.post('/api/athletes/', this.athleteForm)
-          .then((data) => {
-            console.log(data);
+          .then(() => {
             this.$router.push({
               name: 'lista',
             });

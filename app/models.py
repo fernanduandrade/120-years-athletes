@@ -14,7 +14,7 @@ class Athlete(models.Model):
         ('Gold', 'Gold')
     )
 
-    ID = models.CharField(max_length=255, primary_key=True)
+    ID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=200, unique=True, null=False)
     Sex = models.CharField(max_length=20, choices=CHOICES)
     Age = models.CharField(max_length=200)
