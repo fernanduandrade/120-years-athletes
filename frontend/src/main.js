@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Form from './components/Form';
+import Form from './components/Form.vue';
+import editAthletes from './components/editAthlete.vue'
+
 import ListAthletes from './components/ListAthletes.vue';
 import VueRouter from 'vue-router'
 
@@ -20,6 +22,11 @@ const router = new VueRouter({
         path: '/cadastro',
         name: 'form',
         component: Form,
+      },
+      {
+        path: '/atualizar/:id',
+        name: 'atualizar',
+        component: editAthletes,
       },
     ],
     

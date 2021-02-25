@@ -15,7 +15,7 @@
           <div class="col s8">
             <div class="row">
               <div class="col s3">
-                <button class="waves-effect waves-light btn" type="submit">
+                <button type="submit" class="waves-effect waves-light btn">
                   Pesquisar
                 </button>
               </div>
@@ -25,14 +25,12 @@
               <div class="col s2">
                 <select
                   class="browser-default"
-                  @change="onChange($event)"
-                  @click.prevent="getAthletes(pagination.path_page + key)"
-                  v-model="key"
+                  @click.prevent="getAthletes(pagination.path_page + pageKey)"
+                  v-model="pageKey"
                 >
                   <option
                     v-for="pages in pagination.last_page"
                     v-bind:key="pages"
-                    value=""
                   >
                     {{ pages }}
                   </option>
@@ -65,7 +63,7 @@
             <td>{{ athlete.Sport }}</td>
             <td>
               <a href=""> Ver |</a>
-              <a href=""> Editar |</a>
+              <router-link :to="{name: 'atualizar', params: {id: athlete.ID}}">Editar</router-link>
               <a href=""> Deletar</a>
             </td>
           </tr>
@@ -77,6 +75,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "App",
   data() {
@@ -85,7 +84,7 @@ export default {
       athletes: [],
       search: "",
       name: "",
-      key: "",
+      pageKey: "",
       pagination: {},
     };
   },
@@ -96,8 +95,7 @@ export default {
         this.athletes = res.data.result;
         this.pagination = {
           last_page: 252,
-          path_page: "/api/athletes/" + "?page=",
-          total: res.data.count,
+          path_page: "/api/athletes/?page=",
         };
       });
     },
@@ -107,7 +105,7 @@ export default {
       });
     },
     onChange(event) {
-      event.target.value;
+      console.log(event.target.value);
     },
   },
   components: {},

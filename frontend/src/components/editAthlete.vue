@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <form>
+    <form v-on:submit.prevent="">
       <div class="row">
-        <h2 class="center">Adicionar Atleta</h2>
+        <h2 class="center">Editar Atleta</h2>
         <div class="input-field col s6">
-          <input id="nome" type="text" class="validate" />
+          <input id="nome" v-model="athleteForm.Name" type="text" class="validate" />
           <label for="nome">Nome</label>
         </div>
         <div class="input-field col s6">
-          <select id="sexo" class="validate">
+          <select  v-model="athleteForm.Sex" id="sexo" class="validate">
             <option>Male</option>
             <option>Female</option>
             <option>Other</option>
@@ -19,7 +19,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="idade" type="text" class="validate" />
+          <input id="idade" v-model="athleteForm.Age" type="text" class="validate" />
           <label for="idade">Idade</label>
         </div>
       </div>
@@ -27,12 +27,12 @@
       <div class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input id="altura" type="text" class="validate" />
+            <input id="altura"  v-model="athleteForm.Height" type="text" class="validate" />
             <label for="altura">Altura</label>
           </div>
 
           <div class="input-field col s6">
-            <input id="peso" type="text" class="validate" />
+            <input id="peso"  v-model="athleteForm.Weight" type="text" class="validate" />
             <label for="peso">Peso</label>
           </div>
         </div>
@@ -49,14 +49,14 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="noc" type="text" class="validate" />
+          <input id="noc" v-model="athleteForm.NOC" type="text" class="validate" />
           <label for="noc">NOC</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="jogo" type="text" class="validate" />
+          <input id="jogo" v-model="athleteForm.Games" type="text" class="validate" />
           <label for="jogo">Jogos</label>
         </div>
       </div>
@@ -65,8 +65,9 @@
         <div class="input-field col s12">
           <input
             id="ano"
+            v-model="athleteForm.Year"
             type="number"
-            min="1920"
+            min="1900"
             max="2021"
             class="validate"
           />
@@ -76,7 +77,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <select id="temporada" class="validate">
+          <select v-model="athleteForm.Season" id="temporada" class="validate">
             <option>Winter</option>
             <option>Summer</option>
           </select>
@@ -86,40 +87,40 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="cidade" type="text" class="validate" />
+          <input id="cidade" v-model="athleteForm.City" type="text" class="validate" />
           <label for="cidade">Cidade</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="esporte" type="text" class="validate" />
+          <input id="esporte" v-model="athleteForm.Sport" type="text" class="validate" />
           <label for="esporte">Esporte</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <input id="evento" type="text" class="validate" />
+          <input id="evento" v-model="athleteForm.Event" type="text" class="validate" />
           <label for="evento">Evento</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <select id="temporada" class="validate">
+          <select v-model="athleteForm.Medal" id="medalha" class="validate">
             <option>Bronze</option>
             <option>Silver</option>
-            <option>Golder</option>
+            <option>Gold</option>
             <option>NA</option>
           </select>
-          <label for="temporada">Temporada</label>
+          <label for="medalha">Medalha</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
-          <button class="waves-effect waves-light btn">Cadastrar</button>
+          <button type="submit" class="waves-effect waves-light btn">Cadastrar</button>
         </div>
       </div>
     </form>
@@ -128,29 +129,30 @@
 
 <script>
 import { TEAM } from "../utils/options";
+import axios from 'axios';
 
 export default {
   name: "Form",
   data() {
     return {
       teamOptions: TEAM.REGIAO,
-      athleteForm: {
-        Name: "",
-        Sex: "",
-        Age: "",
-        Height: "",
-        Weight: "",
-        Team: "",
-        NOC: "",
-        Games: "",
-        Year: "",
-        Season: "",
-        City: "",
-        Sport: "",
-        Event: "",
-        Medal: "",
-      },
+      athleteForm: {},
     };
   },
+  mounted() {
+    this.getAthleteById();
+  },
+  methods: {
+    async getAthleteById() {
+
+      const { id } = this.$route.params;
+      await axios.get(`/api/athletes/${id}/`)
+        .then((res) => {
+          this.athleteForm = {...res.data};
+        }).catch(err => {
+          console.log(err);
+        });
+    },
+  }
 };
 </script>
