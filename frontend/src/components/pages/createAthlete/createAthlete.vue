@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <form v-on:submit.prevent="">
+    <form v-on:submit.prevent="addAthlete()">
       <div class="row">
-        <h2 class="center">Editar Atleta</h2>
+        <h2 class="center">Adicionar Atleta</h2>
         <div class="input-field col s6">
           <input id="nome" v-model="athleteForm.Name" type="text" class="validate" />
           <label for="nome">Nome</label>
@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import { TEAM } from "../utils/options";
+import { TEAM } from '../../../utils/options';
 import axios from 'axios';
 
 export default {
@@ -136,22 +136,36 @@ export default {
   data() {
     return {
       teamOptions: TEAM.REGIAO,
-      athleteForm: {},
+      athleteForm: {
+        Name: "",
+        Sex: "",
+        Age: "",
+        Height: "",
+        Weight: "",
+        Team: "",
+        NOC: "",
+        Games: "",
+        Year: "",
+        Season: "",
+        City: "",
+        Sport: "",
+        Event: "",
+        Medal: "",
+      },
     };
   },
-  mounted() {
-    this.getAthleteById();
-  },
   methods: {
-    async getAthleteById() {
+    addAthlete() {
 
-      const { id } = this.$route.params;
-      await axios.get(`/api/athletes/${id}/`)
-        .then((res) => {
-          this.athleteForm = {...res.data};
-        }).catch(err => {
-          console.log(err);
-        });
+      axios.post('/api/athletes/', this.athleteForm)
+          .then(() => {
+            this.$router.push({
+              name: 'lista',
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     },
   }
 };

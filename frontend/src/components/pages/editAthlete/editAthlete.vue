@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <form v-on:submit.prevent="addAthlete()">
+    <form v-on:submit.prevent="updateArticle()">
       <div class="row">
-        <h2 class="center">Adicionar Atleta</h2>
+        <h2 class="center">Editar Atleta</h2>
         <div class="input-field col s6">
           <input id="nome" v-model="athleteForm.Name" type="text" class="validate" />
           <label for="nome">Nome</label>
@@ -120,7 +120,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <button type="submit" class="waves-effect waves-light btn">Cadastrar</button>
+          <button type="submit" class="waves-effect waves-light btn">Atualizar</button>
         </div>
       </div>
     </form>
@@ -128,44 +128,42 @@
 </template>
 
 <script>
-import { TEAM } from "../utils/options";
+import { TEAM } from '../../../utils/options'
 import axios from 'axios';
 
 export default {
-  name: "Form",
   data() {
     return {
       teamOptions: TEAM.REGIAO,
-      athleteForm: {
-        Name: "",
-        Sex: "",
-        Age: "",
-        Height: "",
-        Weight: "",
-        Team: "",
-        NOC: "",
-        Games: "",
-        Year: "",
-        Season: "",
-        City: "",
-        Sport: "",
-        Event: "",
-        Medal: "",
-      },
+      athleteForm: {},
     };
   },
+  mounted() {
+    this.getAthleteById();
+  },
   methods: {
-    addAthlete() {
+    async getAthleteById() {
 
-      axios.post('/api/athletes/', this.athleteForm)
-          .then(() => {
-            this.$router.push({
+      const { id } = this.$route.params;
+      await axios.get(`/api/athletes/${id}/`)
+        .then((res) => {
+          this.athleteForm = {...res.data};
+        }).catch(err => {
+          console.log(err);
+        });
+    },
+    async updateArticle() {
+      const {id} = this.$route.params; 
+      await axios.put(`/api/athletes/${id}/`, this.athleteForm)
+        .then(() => {
+          this.$router.push({
               name: 'lista',
             });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
     },
   }
 };

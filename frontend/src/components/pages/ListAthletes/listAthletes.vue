@@ -14,15 +14,10 @@
 
           <div class="col s8">
             <div class="row">
-              <div class="col s3">
-                <button type="submit" class="waves-effect waves-light btn">
-                  Pesquisar
-                </button>
-              </div>
               <div class="col s2">
-                <p><strong style="font-size: 20px">PÁGINA: </strong></p>
+                <p class="page-style"><strong>PÁGINA: </strong></p>
               </div>
-              <div class="col s2">
+              <div class="col s1">
                 <select
                   class="browser-default"
                   @click.prevent="getAthletes(pagination.path_page + pageKey)"
@@ -61,10 +56,10 @@
             <td>{{ athlete.Age }}</td>
             <td>{{ athlete.Team }}</td>
             <td>{{ athlete.Sport }}</td>
-            <td>
-              <a href=""> Ver |</a>
-              <router-link :to="{name: 'atualizar', params: {id: athlete.ID}}">Editar</router-link>
-              <a href=""> Deletar</a>
+            <td class="actions col s12">
+              <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.ID}}">remove_red_eye</router-link>
+              <router-link class="material-icons edit-icon" :to="{name: 'atualizar', params: {id: athlete.ID}}">edit</router-link>
+              <a class="material-icons delete-icon" v-on:click="deleteAthlete(athlete.ID)">delete_forever</a>
             </td>
           </tr>
         </tbody>
@@ -107,6 +102,15 @@ export default {
     onChange(event) {
       console.log(event.target.value);
     },
+    async deleteAthlete(id) {
+      await axios.delete(`/api/athletes/${id}/`)
+        .then(() => {
+          this.getAthletes();
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
   components: {},
   computed: {
@@ -121,3 +125,27 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.page-style {
+  margin: 0 auto;
+  font-size: 24px;
+}
+.actions {
+  display: flex;
+  padding-right: 10px;
+  justify-content: space-between;
+} 
+.delete-icon {
+  cursor: pointer;
+  color: rgb(216, 6, 6);
+}
+.view-icon {
+  cursor: pointer;
+  color: rgb(6, 137, 177);
+}
+.edit-icon {
+  cursor: pointer;
+  color: rgb(6, 238, 6);
+}
+</style>

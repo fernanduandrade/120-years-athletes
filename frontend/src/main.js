@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Form from './components/Form.vue';
-import editAthletes from './components/editAthlete.vue'
 
-import ListAthletes from './components/ListAthletes.vue';
+import createAthlete from './components/pages/createAthlete/createAthlete.vue';
+import editAthlete from './components/pages/editAthlete/editAthlete.vue'
+import listAthletes from './components/pages/ListAthletes/listAthletes.vue';
+import athleteProfile from './components/pages/athleteProfile/athleteProfile.vue';
+
 import VueRouter from 'vue-router'
-
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -16,17 +17,22 @@ const router = new VueRouter({
       { 
         path: '/',
         name: 'lista',
-        component: ListAthletes,
+        component: listAthletes,
       },
       {
         path: '/cadastro',
-        name: 'form',
-        component: Form,
+        name: 'cadastro',
+        component: createAthlete,
       },
       {
         path: '/atualizar/:id',
         name: 'atualizar',
-        component: editAthletes,
+        component: editAthlete,
+      },
+      {
+        path: '/perfil',
+        name: 'perfil',
+        component: athleteProfile,
       },
     ],
     
