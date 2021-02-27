@@ -14,10 +14,15 @@
 
           <div class="col s8">
             <div class="row">
+
+              <div class="col s3">
+                <button  class="waves-effect waves-light btn" type="submit">pesquisar</button>
+              </div>
+
               <div class="col s2">
                 <p class="page-style"><strong>PÁGINA: </strong></p>
               </div>
-              <div class="col s1">
+              <div class="col s2">
                 <select
                   class="browser-default"
                   @click.prevent="getAthletes(pagination.path_page + pageKey)"
