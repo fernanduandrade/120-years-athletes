@@ -12,21 +12,21 @@
           <h6><strong>ALTURA:</strong> {{ athleteForm.Height }}</h6>
         </div>
 
-        <div v-if="athleteForm.Medal === 'Bronze'" class="col s6">
+        <div v-if="athleteMedal === 'Bronze'" class="col s6">
           <img
             width="150px"
             src="../../../assets/Bronze.svg"
             alt="medal image"
           />
         </div>
-        <div v-else-if="athleteForm.Medal === 'Silver'" class="col s6">
+        <div v-else-if="athleteMedal === 'Silver'" class="col s6">
           <img
             width="150px"
             src="../../../assets/Silver.svg"
             alt="medal image"
           />
         </div>
-        <div v-else-if="athleteForm.Medal === 'Gold'" class="col s6">
+        <div v-else-if="athleteMedal === 'Gold'" class="col s6">
           <img
             width="150px"
             src="../../../assets/Gold.svg"
@@ -83,6 +83,12 @@ export default {
           console.log(err);
         });
     },
+  
+  },
+  computed: {
+    athleteMedal() {
+      return this.athleteForm.Medal.split('"')[0];
+    }
   },
   created() {
     this.getAthleteById();

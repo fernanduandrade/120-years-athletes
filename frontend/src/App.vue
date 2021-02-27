@@ -5,7 +5,7 @@
         <a class="brand-logo">120 anos de olimpíada</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><router-link class="link-item" to="/">Lista dos Atletas</router-link></li>
-          <li><router-link class="link-item" to="/cadastro">Cadastrar</router-link></li>
+          <li><router-link class="link-item" to="/cadastrar">Cadastrar</router-link></li>
         </ul>
       </div>
     </nav>
@@ -21,6 +21,7 @@
 body {
   background-color: #fff;
 }
+
 nav {
   background-color: #25282c;
 }

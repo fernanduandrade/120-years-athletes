@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import createAthlete from './components/pages/createAthlete/createAthlete.vue';
 import editAthlete from './components/pages/editAthlete/editAthlete.vue'
-import listAthletes from './components/pages/ListAthletes/listAthletes.vue';
+import listAthletes from './components/pages/listAthletes/listAthletes.vue';
 import athleteProfile from './components/pages/athleteProfile/athleteProfile.vue';
 
 import VueRouter from 'vue-router'
@@ -20,8 +20,8 @@ const router = new VueRouter({
         component: listAthletes,
       },
       {
-        path: '/cadastro',
-        name: 'cadastro',
+        path: '/cadastrar',
+        name: 'cadastrar',
         component: createAthlete,
       },
       {

@@ -39,19 +39,21 @@
       </div>
 
       <div class="input-field col s12">
-        <select v-model="athleteForm.Team" id="sexo">
+        <select v-model="athleteForm.Team" id="pais">
           <option v-for="country in teamOptions" :key="country">
             {{ country }}
           </option>
         </select>
-        <label for="sex">Time</label>
+        <label for="pais">País</label>
       </div>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="noc" v-model="athleteForm.NOC" type="text" class="validate" />
-          <label for="noc">NOC</label>
-        </div>
+      <div class="input-field col s12">
+        <select v-model="athleteForm.NOC" id="noc">
+          <option v-for="noc in nocOptions" :key="noc">
+            {{ noc }}
+          </option>
+        </select>
+        <label for="noc">NOC</label>
       </div>
 
       <div class="row">
@@ -128,13 +130,14 @@
 </template>
 
 <script>
-import { TEAM } from '../../../utils/options'
+import { TEAM, NOC } from '../../../utils/options'
 import axios from 'axios';
 
 export default {
   data() {
     return {
       teamOptions: TEAM.REGIAO,
+      nocOptions: NOC.NOC_REGIAO,
       athleteForm: {},
     };
   },
