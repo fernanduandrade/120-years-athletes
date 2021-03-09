@@ -63,7 +63,7 @@ q<template>
             <td>{{ athlete.ID }}</td>
             <td>{{ athlete.Name }}</td>
             <td>{{ athlete.Age }}</td>
-            <td><img :src="countryImage(athlete.NOC.slice(0,2))" alt="countryImage"></td>
+            <td><img class="country" :src="countryImage(athlete.NOC)" alt="countryImage"></td>
             <td>{{ athlete.Sport }}</td>
             <td class="actions col s12">
               <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.ID}}">remove_red_eye</router-link>
@@ -100,5 +100,8 @@ q<template>
 .edit-icon {
   cursor: pointer;
   color: rgb(6, 238, 6);
+}
+.country {
+  height: 40px;
 }
 </style>

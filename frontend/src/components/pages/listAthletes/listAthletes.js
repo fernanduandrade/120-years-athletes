@@ -43,7 +43,7 @@ export default {
     },
 
     countryImage(noc) {
-      return "https://www.countryflags.io/" + noc + "/flat/64.png"
+      return "https://www.countryflags.io/" + noc.slice(0,2) + "/flat/64.png"
     }
   },
   components: {},
@@ -54,7 +54,7 @@ export default {
       });
     },
     totalRegisters() {
-      return this.pagination.total
+      return this.pagination.total.toString().slice(0,3) + "." + this.pagination.total.toString().slice(3,6)
     },
   },
   async created() {
