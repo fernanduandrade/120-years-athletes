@@ -5,7 +5,7 @@ Um CRUD para gerenciar e visualizar dados do [120-years-of-olympic-history](http
 ## :heart: Como usar
 ### :computer: Instale as dependências necessárias:
 
-**No backend é utilizado django então é necessário ter uma virtualenv para um melhor controle dos packages 📦.**
+**No backend é utilizado django, uma virtualenv para um melhor controle dos packages 📦**
 
 Tenha o python instalado na sua máquina e execute os seguintes comandos para criar e ativar a virtualenv.
 
@@ -36,11 +36,16 @@ Tenha o python instalado na sua máquina e execute os seguintes comandos para cr
 
 </li>
 
-```sh
-cd backend/ && npm install
-```
+<li>Por fim
 
-## :computer: No diretório onde contenha o arquivo `manage.py`
+    
+    cd backend/ && npm install
+    
+
+</li>
+
+
+### :computer: No diretório onde contenha o arquivo `manage.py`
 
 ```sh
 (nome_da_virtualenv)pip install -r requirements.txt
@@ -56,7 +61,7 @@ cd backend/ && npm install
 ```sh
 python manage.py runserver 
 ```
-## Para o frontend foi utilizado Vue, instale as dependências 📦.
+### Para o frontend foi utilizado Vue, instale as dependências 📦.
 
 ```sh
 cd frontend/ && npm install
@@ -76,7 +81,7 @@ Os endpoints da API são:
 |---|---|---|
 |`localhost:8000/api/atheletes`| `GET` | Retorna todos atletas registrados. |
 |`localhost:8000/api/atheletes/?page={query}`| `GET` | Retorna o número de página da paginação. |
-|`localhost:8000/api/atheletes/?page_size=Primeiramente i{query}`| `GET` | Retorna a quantidade de registros passado na query(por padrão é 500). |
+|`localhost:8000/api/atheletes/?page_size={query}`| `GET` | Retorna a quantidade de registros passado na query(por padrão é 500). |
 |`localhost:8000/api/atheletes/?search={query}`| `GET` | Retorna o todos match da query. |
 |`localhost:8000/api/atheletes/:id`| `GET` | Retorna apenas um atleta. |
 |`localhost:8000/api/atheletes`| `POST` | Cadastra um novo atleta. |
