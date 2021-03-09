@@ -18,6 +18,7 @@ export default {
       await axios.get(page).then((res) => {
         this.athletes = res.data.result;
         this.pagination = {
+          total: res.data.count,
           last_page: 252,
           path_page: "/api/athletes/?page=",
         };
@@ -39,6 +40,10 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+
+    countryImage(noc) {
+      return "https://www.countryflags.io/" + noc + "/flat/64.png"
     }
   },
   components: {},
@@ -47,6 +52,9 @@ export default {
       return this.athletes.filter((athlete) => {
         return athlete.Name.toLowerCase().match(this.search.toLowerCase());
       });
+    },
+    totalRegisters() {
+      return this.pagination.total
     },
   },
   async created() {

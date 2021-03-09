@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_swagger',
     'django_filters',
+    'import_export',
 ]
-
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_HEADERS = (
     'X-CSRFTOKEN',

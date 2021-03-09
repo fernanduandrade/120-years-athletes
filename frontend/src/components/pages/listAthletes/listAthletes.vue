@@ -18,10 +18,11 @@ q<template>
               <div class="col s3">
                 <button  class="waves-effect waves-light btn" type="submit">pesquisar</button>
               </div>
-
+             
               <div class="col s2">
                 <p class="page-style"><strong>PÁGINA: </strong></p>
               </div>
+              
               <div class="col s2">
                 <select
                   class="browser-default"
@@ -35,6 +36,9 @@ q<template>
                     {{ pages }}
                   </option>
                 </select>
+              </div>
+               <div class="col s6">
+                <p>Total de registros: <strong>{{totalRegisters}}</strong></p>
               </div>
             </div>
           </div>
@@ -59,7 +63,7 @@ q<template>
             <td>{{ athlete.ID }}</td>
             <td>{{ athlete.Name }}</td>
             <td>{{ athlete.Age }}</td>
-            <td>{{ athlete.Team }}</td>
+            <td><img :src="countryImage(athlete.NOC.slice(0,2))" alt="countryImage"></td>
             <td>{{ athlete.Sport }}</td>
             <td class="actions col s12">
               <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.ID}}">remove_red_eye</router-link>
