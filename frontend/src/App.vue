@@ -9,16 +9,15 @@
         </ul>
       </div>
     </nav>
-    <div>  
-      <router-view></router-view>
+    <div> 
+      <transition name="slide-fade">   
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
 
 <style>
-body {
-  background-color: #fff;
-}
 
 nav {
   background-color: #25282c;

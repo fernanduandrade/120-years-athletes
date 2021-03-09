@@ -12,6 +12,8 @@ export default {
         .get(`/api/athletes/${id}/`)
         .then((res) => {
           this.athleteForm = { ...res.data };
+          this.bgc = {...res.data.Medal}
+          console.log(this.bgc)
         })
         .catch((err) => {
           console.log(err);

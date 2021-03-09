@@ -3,11 +3,11 @@
 Um CRUD para gerenciar e visualizar dados do [120-years-of-olympic-history](https://www.kaggle.com/heesoo37/120-years-of-olympic-history-athletes-and-results) 
 
 ## :heart: Como usar
-### :computer: Primeiramente instale as dependências necessárias:
+### :computer: Instale as dependências necessárias:
 
 **No backend é utilizado django então é necessário ter uma virtualenv para um melhor controle dos packages 📦.**
 
-Tenha python instalado e rode os seguintes comandos para criar e ativar a virtualenv.
+Tenha o python instalado na sua máquina e execute os seguintes comandos para criar e ativar a virtualenv.
 
 <li>No Linux
 
@@ -40,7 +40,7 @@ Tenha python instalado e rode os seguintes comandos para criar e ativar a virtua
 cd backend/ && npm install
 ```
 
-## :computer: No diretório onde contenha o manage.py
+## :computer: No diretório onde contenha o arquivo `manage.py`
 
 ```sh
 (nome_da_virtualenv)pip install -r requirements.txt
@@ -67,13 +67,17 @@ cd frontend/ && npm install
 ```sh
 npm run serve
 ```
-
 ## Back-end da API
+
+Você pode visualizar a documentação da API através `localhost:8000/swagger/`.
 
 Os endpoints da API são:
 |Rotas| Método | Descrição |
 |---|---|---|
 |`localhost:8000/api/atheletes`| `GET` | Retorna todos atletas registrados. |
+|`localhost:8000/api/atheletes/?page={query}`| `GET` | Retorna o número de página da paginação. |
+|`localhost:8000/api/atheletes/?page_size=Primeiramente i{query}`| `GET` | Retorna a quantidade de registros passado na query(por padrão é 500). |
+|`localhost:8000/api/atheletes/?search={query}`| `GET` | Retorna o todos match da query. |
 |`localhost:8000/api/atheletes/:id`| `GET` | Retorna apenas um atleta. |
 |`localhost:8000/api/atheletes`| `POST` | Cadastra um novo atleta. |
 |`localhost:8000/api/atheletes/:id`| `PUT` | Atualiza os dados de um atleta específico. |
@@ -83,25 +87,55 @@ Os endpoints da API são:
     + Body 
         ```text
         {
-            "id": "1",
-            "título": "Quiz nº 1",
-            "usuário": "Fernando",
-            "dataCadastroPergunta": "2021/02/03",
-            "localização": {
-                "latitude": "-5.1697377",
-                "longitude": "-41.703652299999995"
-            },
-            "perguntas": [
-                "Qual o nome do seu primeiro pet?"
-            ],
-            "dataCadastroResposta": "2021/02/28",
-            respostas": [
-                "Billy"
-            ],
-            "respondido": true
+            "Name": "Fernando",
+            "Sex": "Male",
+            "Age": "23",
+            "Height": "1.66",
+            "Weight": "57",
+            "Team": "Brazil",
+            "NOC": "BRL",
+            "Games": "Copa da Amizade",
+            "Year": "2019",
+            "Season": "Winter",
+            "City": "Teresina",
+            "Sport": "Futsal",
+            "Event": "Evento beneficente para arrecador dinheiro",
+            "Medal": "Gold"
         }
         ```
-        
+
+## :notebook Notas
+**Configurando conexão com banco de dados**
+
+Configure o banco de dados no `settings.py` no diretório `athletes_app/`
+
+```text
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'DOBANCODEDADOS',
+            'USER': 'USUARIO',
+            'PASSWORD': 'SUASENHA',
+            'HOST': 'localhost',
+            'PORT': '3306'
+    }
+}
+```
+
+**Crie um super usuário para popular o banco de dados**
+
+Use o arquivo `athlete_events.csv` para adicionar os dados ao database para isso criei um superusuário para acessar a página do django-admin.
+
+
+```sh
+python manage.py createsuperuser
+```
+
+Acesse a página do django-admin para adicionar csv.
+```text
+localhost:8000/admin/
+```
+Em seguinda clique abaixo da sessão APP `Atheletes` e selecione importar, escolha o arquivo e selecione o formato csv.
 ## :mailbox_with_mail: License
 
 This software was created for study purposes only. Feel free to try it out.

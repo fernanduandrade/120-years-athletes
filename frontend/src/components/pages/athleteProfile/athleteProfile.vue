@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="card z-depth-2">
+    <div class="card z-depth-2" >
       <h3 class="center"><strong>PERFIL DO ATLETA</strong></h3>
       <div class="divider"></div>
       <div class="row">
@@ -66,4 +66,5 @@
 
 <script src='./athleteProfile.js'></script>
 
-<style scoped></style>
+<style>
+</style>
