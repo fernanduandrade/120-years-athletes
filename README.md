@@ -109,7 +109,7 @@ Os endpoints da API são:
         }
         ```
 
-## :notebook Notas
+## :notebook: Notas
 **Configurando conexão com banco de dados**
 
 Configure o banco de dados no `settings.py` no diretório `athletes_app/`
