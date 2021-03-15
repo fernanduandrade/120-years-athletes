@@ -6,6 +6,10 @@ import editAthlete from './components/pages/editAthlete/editAthlete.vue'
 import listAthletes from './components/pages/listAthletes/listAthletes.vue';
 import athleteProfile from './components/pages/athleteProfile/athleteProfile.vue';
 
+import 'materialize-css'
+import 'materialize-css/dist/css/materialize.css'
+import 'materialize-css/dist/js/materialize.js'
+
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)

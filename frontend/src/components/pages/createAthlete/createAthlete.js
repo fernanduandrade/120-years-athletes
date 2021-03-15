@@ -2,8 +2,8 @@ import { TEAM, NOC } from '../../../utils/options';
 import axios from 'axios';
 
 export default {
-  name: "Form",
-  data() {
+    name: "Form",
+    data() {
     return {
       teamOptions: TEAM.REGIAO,
       nocOptions: NOC.NOC_REGIAO,
@@ -38,5 +38,8 @@ export default {
             console.log(err);
           });
     },
-  }
+  },
+    mounted() {
+	M.AutoInit(); // That way, it is only initialized when the component is mounted
+    }
 };
