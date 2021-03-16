@@ -1,5 +1,6 @@
 import { TEAM, NOC } from '../../../utils/options'
 import axios from 'axios';
+import M from 'materialize-css'
 
 export default {
   data() {
@@ -11,6 +12,7 @@ export default {
   },
   mounted() {
     this.getAthleteById();
+    M.AutoInit();
   },
   methods: {
     async getAthleteById() {

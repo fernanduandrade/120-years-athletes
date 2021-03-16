@@ -1,5 +1,10 @@
 import { TEAM, NOC } from '../../../utils/options';
 import axios from 'axios';
+import M from 'materialize-css'
+
+
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'csrftoken'
 
 export default {
     name: "Form",
@@ -39,7 +44,7 @@ export default {
           });
     },
   },
-    mounted() {
-	M.AutoInit(); // That way, it is only initialized when the component is mounted
-    }
+  mounted() {
+     M.AutoInit();
+  }
 };

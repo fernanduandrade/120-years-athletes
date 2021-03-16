@@ -19,7 +19,7 @@ export default {
         this.athletes = res.data.result;
         this.pagination = {
           total: res.data.count,
-          last_page: 252,
+          last_page: 1257,
           path_page: "/api/athletes/?page=",
         };
       });

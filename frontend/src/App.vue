@@ -16,11 +16,9 @@
     </div>
   </div>
 </template>
+
 <style>
 
-nav {
-  background-color: #25282c !important;
-}
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
