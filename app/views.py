@@ -4,7 +4,7 @@ from .serializers import AthleteSerializer
 
 
 class AthleteViewSet(viewsets.ModelViewSet):
-    queryset = Athlete.objects.get_queryset().order_by('Team')
+    queryset = Athlete.objects.get_queryset().order_by('team')
     serializer_class = AthleteSerializer
-    search_fields = ['Name']
+    search_fields = ['name']
     filter_backends = (filters.SearchFilter,)

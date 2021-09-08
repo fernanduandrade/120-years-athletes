@@ -42,15 +42,15 @@ export default {
         });
     },
 
-    countryImage(noc) {
-      return "https://www.countryflags.io/" + noc.slice(0,2) + "/flat/64.png"
+    countryImage(team) {
+      return "https://www.countryflags.io/" + team + "/flat/64.png"  //noc.slice(0,2)
     }
   },
   components: {},
   computed: {
     filterAthletes() {
       return this.athletes.filter((athlete) => {
-        return athlete.Name.toLowerCase().match(this.search.toLowerCase());
+        return athlete.name.toLowerCase().match(this.search.toLowerCase());
       });
     },
     totalRegisters() {

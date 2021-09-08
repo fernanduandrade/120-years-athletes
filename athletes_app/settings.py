@@ -95,12 +95,12 @@ WSGI_APPLICATION = 'athletes_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'teste',
-        'USER': 'root',
-        'PASSWORD': '1234',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '120_atletismo',
+        'USER': 'admin',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '5432'
     }
 }
 

@@ -1,4 +1,4 @@
-q<template>
+<template>
   <div>
     <div class="container">
       <div class="row">
@@ -59,15 +59,15 @@ q<template>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="athlete in filterAthletes" :key="athlete.ID">
-            <td>{{ athlete.ID }}</td>
-            <td>{{ athlete.Name }}</td>
-            <td>{{ athlete.Age }}</td>
-            <td><img class="country" :src="countryImage(athlete.NOC)" alt="countryImage"></td>
-            <td>{{ athlete.Sport }}</td>
+          <tr v-for="athlete in filterAthletes" :key="athlete.id">
+            <td>{{ athlete.id }}</td>
+            <td>{{ athlete.name }}</td>
+            <td>{{ athlete.age }}</td>
+            <td><img class="country" :src="countryImage(athlete.team)" alt="countryImage"></td>
+            <td>{{ athlete.sport }}</td>
             <td class="actions col s12">
-              <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.ID}}">remove_red_eye</router-link>
-              <router-link class="material-icons edit-icon" :to="{name: 'atualizar', params: {id: athlete.ID}}">edit</router-link>
+              <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.id}}">remove_red_eye</router-link>
+              <router-link class="material-icons edit-icon" :to="{name: 'atualizar', params: {id: athlete.id}}">edit</router-link>
               <a class="material-icons delete-icon" v-on:click="deleteAthlete(athlete.ID)">delete_forever</a>
             </td>
           </tr>
