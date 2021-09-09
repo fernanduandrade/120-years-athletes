@@ -42,8 +42,8 @@ export default {
         });
     },
 
-    countryImage(team) {
-      return "https://www.countryflags.io/" + team + "/flat/64.png"  //noc.slice(0,2)
+    countryImage(noc) {
+      return "https://www.countryflags.io/" + noc.slice(0,2) + "/flat/64.png"  //noc.slice(0,2)
     }
   },
   components: {},

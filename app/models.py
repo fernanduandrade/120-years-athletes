@@ -15,10 +15,11 @@ class Athlete(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200, unique=True, null=False)
+    name = models.CharField(max_length=200, unique=False, null=False)
     sex = models.CharField(max_length=20, choices=CHOICES)
     age = models.CharField(max_length=200)
     team = models.CharField(max_length=100)
     year = models.CharField(max_length=255)
     sport = models.CharField(max_length=100)
+    noc = models.CharField(max_length=100, default='teste')
     medal = models.CharField(max_length=200, choices=MEDAL_CHOICES)

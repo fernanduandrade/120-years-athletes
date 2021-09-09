@@ -50,7 +50,6 @@
       <table class="highlight centered">
         <thead>
           <tr>
-            <th>#ID</th>
             <th>Nome</th>
             <th>Idade</th>
             <th>Time</th>
@@ -60,10 +59,9 @@
         </thead>
         <tbody>
           <tr v-for="athlete in filterAthletes" :key="athlete.id">
-            <td>{{ athlete.id }}</td>
             <td>{{ athlete.name }}</td>
             <td>{{ athlete.age }}</td>
-            <td><img class="country" :src="countryImage(athlete.team)" alt="countryImage"></td>
+            <td><img class="country" :src="countryImage(athlete.noc)" alt="countryImage"></td>
             <td>{{ athlete.sport }}</td>
             <td class="actions col s12">
               <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.id}}">remove_red_eye</router-link>
