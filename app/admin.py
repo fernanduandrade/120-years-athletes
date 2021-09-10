@@ -4,7 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Athlete)
 class AthleteAdmin(ImportExportModelAdmin):
-    list_display = ("id","name","sex","age","team","year","sport","noc", "medal")
+    list_display = ("id","name","sex","age","team","year","sport","medal")
     exclude = ("id",)
     pass
     

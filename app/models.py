@@ -21,5 +21,4 @@ class Athlete(models.Model):
     team = models.CharField(max_length=100)
     year = models.CharField(max_length=255)
     sport = models.CharField(max_length=100)
-    noc = models.CharField(max_length=100, default='teste')
     medal = models.CharField(max_length=200, choices=MEDAL_CHOICES)
