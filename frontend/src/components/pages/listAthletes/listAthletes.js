@@ -1,4 +1,5 @@
 import axios from "axios";
+import { COUNTRYCODE } from '../../../utils/countryCode';
 
 export default {
   name: "App",
@@ -10,6 +11,13 @@ export default {
       name: "",
       pageKey: "",
       pagination: {},
+      teste: require('../../../assets/Bronze.svg'),
+      medalImgPath: {
+        Bronze: require("../../../assets/Bronze.svg"),
+        Silver: require("../../../assets/Silver.svg"),
+        Gold: require("../../../assets/Gold.svg"),
+        NA: require("../../../assets/participation.png")
+      }
     };
   },
   methods: {
@@ -41,9 +49,11 @@ export default {
           console.log(err);
         });
     },
-
-    countryImage(noc) {
-      return "https://www.countryflags.io/" + noc.slice(0,2) + "/flat/64.png"  //noc.slice(0,2)
+    countryImage(countryTeam) {
+      return "https://www.countryflags.io/" + COUNTRYCODE[countryTeam] + "/flat/64.png" 
+    },
+    medalImg(medal) {
+      return this.medalImgPath[medal];
     }
   },
   components: {},

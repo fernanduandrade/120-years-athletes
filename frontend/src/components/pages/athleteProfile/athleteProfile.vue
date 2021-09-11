@@ -5,11 +5,11 @@
       <div class="divider"></div>
       <div class="row">
         <div class="col s6">
-          <h6><strong>NOME:</strong> {{ athleteForm.Name }}</h6>
-          <h6><strong>SEXO:</strong> {{ athleteForm.Sex }}</h6>
-          <h6><strong>IDADE:</strong> {{ athleteForm.Age }}</h6>
-          <strong>PESO:</strong> {{ athleteForm.Weight }}
-          <h6><strong>ALTURA:</strong> {{ athleteForm.Height }}</h6>
+          <h6><strong>NOME:</strong> {{ athleteForm.name }}</h6>
+          <h6><strong>SEXO:</strong> {{ athleteForm.sex }}</h6>
+          <h6><strong>IDADE:</strong> {{ athleteForm.age }}</h6>
+          <strong>PESO:</strong> teste
+          <h6><strong>ALTURA:</strong> teste</h6>
         </div>
 
         <div v-if="athleteMedal === 'Bronze'" class="col s6">

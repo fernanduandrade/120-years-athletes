@@ -51,23 +51,25 @@
         <thead>
           <tr>
             <th>Nome</th>
-            <th>Idade</th>
+            <th>Ano</th>
             <th>Time</th>
-            <th>Esporte</th>
-            <th>Ações</th>
+            <th>Medalha</th>
+            <th>Esporte</th> 
+            <!-- <th>Ações</th> -->
           </tr>
         </thead>
         <tbody>
           <tr v-for="athlete in filterAthletes" :key="athlete.id">
             <td>{{ athlete.name }}</td>
-            <td>{{ athlete.age }}</td>
-            <td><img class="country" :src="countryImage(athlete.noc)" alt="countryImage"></td>
+            <td>{{ athlete.year }}</td>
+            <td><img class="country" :src="countryImage(athlete.team)" alt="medalImg"></td>
+            <td><img width="50px" :src="medalImgPath[athlete.medal]"  alt="medal image"></td>
             <td>{{ athlete.sport }}</td>
-            <td class="actions col s12">
+            <!-- <td class="actions col s12">
               <router-link class="material-icons view-icon" :to="{name: 'perfil', params: {id: athlete.id}}">remove_red_eye</router-link>
               <router-link class="material-icons edit-icon" :to="{name: 'atualizar', params: {id: athlete.id}}">edit</router-link>
-              <a class="material-icons delete-icon" v-on:click="deleteAthlete(athlete.ID)">delete_forever</a>
-            </td>
+              <a class="material-icons delete-icon" v-on:click="deleteAthlete(athlete.id)">delete_forever</a>
+            </td> -->
           </tr>
         </tbody>
       </table>

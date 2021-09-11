@@ -3,6 +3,12 @@ export default {
   data() {
     return {
       athleteForm: {},
+      medals: {
+        Bronze: "../../../assets/Bronze.svg",
+        Silver: "../../../assets/Silver.svg",
+        Gold: "../../../assets/Gold.svg",
+        NA: "../../../assets/participation.png"
+      }
     };
   },
   methods: {
@@ -12,8 +18,7 @@ export default {
         .get(`/api/athletes/${id}/`)
         .then((res) => {
           this.athleteForm = { ...res.data };
-          this.bgc = {...res.data.Medal}
-          console.log(this.bgc)
+          this.bgc = {...res.data.medal}
         })
         .catch((err) => {
           console.log(err);
@@ -23,7 +28,7 @@ export default {
   },
   computed: {
     athleteMedal() {
-      return this.athleteForm.Medal.split('"')[0];
+      return this.athleteForm.medal;
     }
   },
   created() {
