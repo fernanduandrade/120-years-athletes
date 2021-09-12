@@ -14,17 +14,9 @@ export default {
   methods: {
     async getAthleteById() {
       const { id } = this.$route.params;
-      await axios
-        .get(`/api/athletes/${id}/`)
-        .then((res) => {
-          this.athleteForm = { ...res.data };
-          this.bgc = {...res.data.medal}
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const response = await axios.get(`/api/athletes/${id}/`);
+      this.athleteForm = {...response.data};
     },
-  
   },
   computed: {
     athleteMedal() {

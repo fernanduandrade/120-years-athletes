@@ -25,17 +25,15 @@ export default {
     };
   },
   methods: {
-    addAthlete() {
+    async addAthlete() {
 
-      axios.post('/api/athletes/', this.athleteForm)
-          .then(() => {
-            this.$router.push({
-              name: 'lista',
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    const response = await axios.post('/api/athletes/', this.athleteForm);
+    console.log(response);
+      if(response.status === 201) {
+        this.$router.push({
+          name: 'lista',
+        });
+      }
     },
   },
   mounted() {

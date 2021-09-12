@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import createAthlete from './components/pages/createAthlete/createAthlete.vue';
-import editAthlete from './components/pages/editAthlete/editAthlete.vue'
 import listAthletes from './components/pages/listAthletes/listAthletes.vue';
 import athleteProfile from './components/pages/athleteProfile/athleteProfile.vue';
 
@@ -27,11 +26,6 @@ const router = new VueRouter({
         path: '/cadastrar',
         name: 'cadastrar',
         component: createAthlete,
-      },
-      {
-        path: '/atualizar/:id',
-        name: 'atualizar',
-        component: editAthlete,
       },
       {
         path: '/perfil',
