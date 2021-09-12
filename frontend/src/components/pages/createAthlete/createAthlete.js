@@ -1,4 +1,4 @@
-import { TEAM, NOC } from '../../../utils/options';
+import { TEAM } from '../../../utils/options';
 import axios from 'axios';
 import M from 'materialize-css'
 
@@ -9,24 +9,18 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 export default {
     name: "Form",
     data() {
+    
     return {
       teamOptions: TEAM.REGIAO,
-      nocOptions: NOC.NOC_REGIAO,
       athleteForm: {
-        Name: "",
-        Sex: "",
-        Age: "",
-        Height: "",
-        Weight: "",
-        Team: "",
-        NOC: "",
-        Games: "",
-        Year: "",
-        Season: "",
-        City: "",
-        Sport: "",
-        Event: "",
-        Medal: "",
+        name: "",
+        sex: "",
+        age: "",
+        team: "",
+        year: "",
+        sport: "",
+        medal: "",
+        
       },
     };
   },

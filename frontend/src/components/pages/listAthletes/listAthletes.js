@@ -11,7 +11,6 @@ export default {
       name: "",
       pageKey: "",
       pagination: {},
-      teste: require('../../../assets/Bronze.svg'),
       medalImgPath: {
         Bronze: require("../../../assets/Bronze.svg"),
         Silver: require("../../../assets/Silver.svg"),

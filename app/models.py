@@ -3,11 +3,6 @@ from django.db import models
 
 class Athlete(models.Model):
 
-    CHOICES = (
-        ('Male', 'Male'),
-        ('Female', 'Female')
-    )
-
     MEDAL_CHOICES = (
         ('Bronze', 'Bronze'),
         ('Silver', 'Silver'),
@@ -16,7 +11,7 @@ class Athlete(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, unique=False, null=False)
-    sex = models.CharField(max_length=20, choices=CHOICES)
+    sex = models.CharField(max_length=40)
     age = models.CharField(max_length=200)
     team = models.CharField(max_length=100)
     year = models.CharField(max_length=255)
