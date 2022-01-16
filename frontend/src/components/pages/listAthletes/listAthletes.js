@@ -12,7 +12,7 @@ export default {
       pageKey: "",
       pagination: {},
       medalImgPath: {
-        Bronze: require("../../../assets/Bronze.svg"),
+        Bronze: require("../../../assets/Bronze.svg"), 
         Silver: require("../../../assets/Silver.svg"),
         Gold: require("../../../assets/Gold.svg"),
         NA: require("../../../assets/participation.png")
@@ -26,7 +26,7 @@ export default {
       this.athletes = response.data.result;
       this.pagination = {
         total: response.data.count,
-        last_page: 1257,
+        last_page: response.data.total_pages,
         path_page: "/api/athletes/?page=",
       };
     },
@@ -41,7 +41,7 @@ export default {
       return "https://www.countryflags.io/" + COUNTRYCODE[countryTeam] + "/flat/64.png" 
     },
     medalImg(medal) {
-      return this.medalImgPath[medal];
+      return this.medalImgPath[medal][0];
     }
   },
   components: {},
@@ -52,7 +52,7 @@ export default {
       });
     },
     totalRegisters() {
-      return this.pagination.total.toString().slice(0,3) + "." + this.pagination.total.toString().slice(3,6)
+      return new Intl.NumberFormat().format(this.pagination.total);
     },
   },
   async created() {

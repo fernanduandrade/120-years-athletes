@@ -83,6 +83,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {  
+                    'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -97,7 +100,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '120_atletismo',
-        'USER': 'admin',
+        'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432'
@@ -143,9 +146,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
-    'statics',
-]
+STATICFILES_DIRS= [(os.path.join(BASE_DIR,'static'))]
 
 STATIC_URL = '/static/'
 
